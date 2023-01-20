@@ -1,0 +1,29 @@
+version: '2.4'
+services:
+ squidkrb:
+  image: vovinski/squid:0.4
+  restart: always
+  ports:
+   - "3128:3128"
+  volumes:
+   - /data/d/squid/logs:/var/log/squid:rw
+   - /data/d/squid/cache:/var/spool/squid:rw
+   - /data/d/squid/squid.conf:/etc/squid/squid.conf:ro
+   - /data/d/squid/lists:/etc/squid/lists:ro  
+   - /data/d/squid/krb5.conf:/etc/krb5.conf:ro
+   - /data/d/squid/squid-seckga-krb5.keytab:/etc/squid/squid-seckga-krb5.keytab:rw
+   - /etc/localtime:/etc/localtime:ro
+   - /data/d/squid/squid:/etc/init.d/squid:rw
+# environment:
+#  TZ: "Europe/Moscow"
+# apache:
+# image: php:7.4-apache
+# restart: always
+#  ports:
+#   - "8080:80"
+#  volumes:  
+#   - /data/d/lightsquid/html:/var/www/html
+#   - /etc/localtime:/etc/localtime:ro
+#   
+#   - /data/d/apache/:/etc/apache2
+#   - /data/d/apache/mod_perl.so:/usr/lib/apache2/modules/mod_perl.so
